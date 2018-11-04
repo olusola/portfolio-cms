@@ -15,15 +15,19 @@ module.exports = {
       {
         test: /\.(js||jsx)$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader'
-        },
+        use: ['babel-loader', 'eslint-loader'],
       },
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader']
       }
     ]
+  },
+  resolve: {
+    alias: {
+      app: path.resolve(__dirname, 'src')
+    },
+    extensions: ['.js', '.json', '.jsx']
   },
   plugins: [
     new HtmlWebpackPlugin({
