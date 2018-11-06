@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   mode: 'development',
-
+  devtool: 'source-map',
   entry: './src/index.js',
   output: {
     path: path.join(__dirname, '/dist'),
@@ -15,11 +15,27 @@ module.exports = {
       {
         test: /\.(js||jsx)$/,
         exclude: /node_modules/,
-        use: ['babel-loader', 'eslint-loader'],
+        use: ['babel-loader', 'eslint-loader']
       },
       {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        test: /\.s?css$/,
+        use: [
+          {
+            loader: 'style-loader'
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              sourcemaps: true
+            }
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              sourcemaps: true
+            }
+          }
+        ]
       }
     ]
   },
