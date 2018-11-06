@@ -1,12 +1,13 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 module.exports = {
   mode: 'development',
   devtool: 'source-map',
   entry: './src/index.js',
   output: {
-    path: path.join(__dirname, '/dist'),
+    path: path.join(__dirname, '/build'),
     filename: 'bundle.js',
     publicPath: '/'
   },
@@ -50,6 +51,7 @@ module.exports = {
       template: './src/index.html',
       filename: 'index.html',
       inject: 'body'
-    })
+    }),
+    new CleanWebpackPlugin(['build'])
   ]
 }
