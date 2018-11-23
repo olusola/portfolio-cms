@@ -7,7 +7,7 @@ module.exports = {
   devtool: 'source-map',
   entry: './src/index.js',
   output: {
-    path: path.join(__dirname, '/build'),
+    path: path.join(__dirname, '/dist'),
     filename: 'bundle.js',
     publicPath: '/'
   },
@@ -45,6 +45,13 @@ module.exports = {
       app: path.resolve(__dirname, 'src')
     },
     extensions: ['.js', '.json', '.jsx']
+  },
+  devServer: {
+    compress: true,
+    port: 8080,
+    historyApiFallback: true,
+    contentBase: path.resolve(__dirname),
+    publicPath: '/'
   },
   plugins: [
     new HtmlWebpackPlugin({
